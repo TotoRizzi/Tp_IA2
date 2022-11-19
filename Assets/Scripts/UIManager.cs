@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateEnemiesAlive(List<GridEntity> entities)
     {
-        _text.text = "Percentage of enemies Alive " + UpdateUI(entities).ToString(); 
+        _text.text = "Percentage of enemies Alive " + UpdateUI(entities).ToString("F0"); 
     }
     float UpdateUI(List<GridEntity> entities)
     {

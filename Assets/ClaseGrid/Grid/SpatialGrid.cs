@@ -114,7 +114,7 @@ public class SpatialGrid : MonoBehaviour
         // Iteramos las que queden dentro del criterio
         return cells
             .SelectMany(cell => buckets[cell.Item1, cell.Item2])
-            .Where(e =>
+            .Where(e =>e != null &&
                 from.x <= e.transform.position.x && e.transform.position.x <= to.x &&
                 from.z <= e.transform.position.z && e.transform.position.z <= to.z
             ).Where(x => filterByPosition(x.transform.position));
