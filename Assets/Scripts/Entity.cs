@@ -6,9 +6,13 @@ public abstract class Entity : MonoBehaviour
 {
     [SerializeField] protected float _speed;
     protected Rigidbody _myRb;
-    protected float _currentHP;
+    [SerializeField] protected float _currentHP;
     [SerializeField] protected float _maxHP;
-    protected void TakeDamage(float damage)
+    protected virtual void Start()
+    {
+        _currentHP = _maxHP;
+    }
+    public void TakeDamage(float damage)
     {
         _currentHP -= damage;
         if (_currentHP <= 0)

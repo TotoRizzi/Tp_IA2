@@ -8,8 +8,9 @@ public class Player : Entity
 
     [SerializeField] Bullet _bulletPrefab;
     [SerializeField] Transform _shootingPoint;
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _myRb = GetComponent<Rigidbody>();
 
         var idle = new State<PlayerInputs>("IDLE");

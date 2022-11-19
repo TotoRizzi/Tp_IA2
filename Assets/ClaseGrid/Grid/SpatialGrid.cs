@@ -49,15 +49,15 @@ public class SpatialGrid : MonoBehaviour
                 buckets[i, j] = new HashSet<GridEntity>();
 
         //P/alumnos: por que no usamos OfType<>() despues del RecursiveWalker() aca?
-        var ents = RecursiveWalker(transform)
-            .Select(x => x.GetComponent<GridEntity>())
-            .Where(x => x != null);
-
-        foreach (var e in ents)
-        {
-            e.OnMove += UpdateEntity;
-            UpdateEntity(e);
-        }
+        //var ents = RecursiveWalker(transform)
+        //    .Select(x => x.GetComponent<GridEntity>())
+        //    .Where(x => x != null);
+        //
+        //foreach (var e in ents)
+        //{
+        //    e.OnMove += UpdateEntity;
+        //    UpdateEntity(e);
+        //}
     }
 
     public void UpdateEntity(GridEntity entity)
@@ -136,9 +136,9 @@ public class SpatialGrid : MonoBehaviour
 
     void OnDestroy()
     {
-        var ents = RecursiveWalker(transform).Select(x => x.GetComponent<GridEntity>()).Where(x => x != null);
-        foreach (var e in ents)
-            e.OnMove -= UpdateEntity;
+        //var ents = RecursiveWalker(transform).Select(x => x.GetComponent<GridEntity>()).Where(x => x != null);
+        //foreach (var e in ents)
+        //    e.OnMove -= UpdateEntity;
     }
 
     #region GENERATORS
@@ -151,7 +151,15 @@ public class SpatialGrid : MonoBehaviour
             yield return child;
         }
     }
-
+    public void AddEntity(GridEntity entity)
+    {
+        entity.OnMove += UpdateEntity;
+        UpdateEntity(entity);
+    }
+    public void RemoveEntity(GridEntity entity)
+    {
+        entity.OnMove -= UpdateEntity;
+    }
     IEnumerable<T> Generate<T>(T seed, Func<T, T> mutate)
     {
         T accum = seed;
