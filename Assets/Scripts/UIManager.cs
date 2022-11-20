@@ -15,17 +15,17 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateEnemiesAlive(List<GridEntity> entities)
     {
-        _text.text = "Percentage of enemies Alive " + UpdateUI(entities).ToString("F0"); 
+        _text.text = "Percentage of enemies Alive " + UpdateUI(entities).ToString("F1");
     }
     float UpdateUI(List<GridEntity> entities)
     {
-        var count = entities.Aggregate(Tuple.Create(0f, 0f), (x, y) =>
+        var count = entities.Aggregate(0f, (x, y) =>
         {
             if (y.myFaction == Faction.ENEMY)
-                return Tuple.Create(x.Item1 + 1, x.Item2 + 1);
-            else return Tuple.Create(x.Item1, x.Item2 + 1);
+                return x + 1;
+            else return x;
         });
 
-        return (count.Item1 / count.Item2) * 100;
+        return (count / GameManager.Instance.totalGridEntities) * 100f;
     }
 }

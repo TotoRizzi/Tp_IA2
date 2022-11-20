@@ -24,7 +24,7 @@ public class GridEntity : Entity
     float _currentAttackCD;
     Player _player;
     SpatialGrid _grid;
-
+    Action _currentBehaviuor;
     public float CurrentLife { get { return _currentHP; } }
     private void Awake()
     {
@@ -37,23 +37,32 @@ public class GridEntity : Entity
         _grid = FindObjectOfType<SpatialGrid>();
         _grid.AddEntity(this);
         GameManager.Instance.AddGridEntity(this);
+        _rend.material.color = myFaction == Faction.ENEMY ? Color.red : Color.blue;
+
+        if (myFaction == Faction.ENEMY)
+            _currentBehaviuor = EnemyBehaviour;
+        else 
+            _currentBehaviuor = delegate { };
     }
 
     void Update()
     {
-       //if (onGrid)
-       //    _rend.material.color = Color.red;
-       //else
-       //    _rend.material.color = Color.gray;
+        //if (onGrid)
+        //    _rend.material.color = Color.red;
+        //else
+        //    _rend.material.color = Color.gray;
 
         //Optimization: Hacer esto solo cuando realmente se mueve y no en el update
 
+        _currentBehaviuor();
+    }
+    void EnemyBehaviour()
+    {
         if (Vector3.Distance(_player.transform.position, transform.position) < _attackRange)
             Attack();
         else if (Vector3.Distance(_player.transform.position, transform.position) < _viewRange)
             Move();
     }
-
     private void Attack()
     {
         _currentAttackCD += Time.deltaTime;

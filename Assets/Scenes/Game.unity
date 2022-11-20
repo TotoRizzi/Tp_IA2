@@ -383,7 +383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386892685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.3, y: 1.11, z: 23.4}
+  m_LocalPosition: {x: 25, y: 1.11, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1372348262}
@@ -721,6 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 386892686}
   allGridEntities: []
+  totalGridEntities: 0
 --- !u!4 &992391191
 Transform:
   m_ObjectHideFlags: 0
@@ -1324,7 +1325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952834115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.7, y: 0, z: 25}
+  m_LocalPosition: {x: 25, y: 0, z: 25}
   m_LocalScale: {x: 50, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1481,7 +1482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109194775}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 15.3, y: 13.1, z: 21.2}
+  m_LocalPosition: {x: 25, y: 13.1, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
