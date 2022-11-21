@@ -12,7 +12,7 @@ public abstract class Entity : MonoBehaviour
     {
         _currentHP = _maxHP;
     }
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         _currentHP -= damage;
         if (_currentHP <= 0)

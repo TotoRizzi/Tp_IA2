@@ -1,17 +1,22 @@
 using UnityEngine;
 using System.Linq;
 using TMPro;
-using System;
 using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _text;
+    [SerializeField] TextMeshProUGUI _enemyWithLowHP;
 
     public static UIManager Instance;
     private void Awake()
     {
         Instance = this;
+    }
+    public void UpdateLowHP()
+    {
+        if (GameManager.Instance.allGridEntitiesCurrentLife.Any())
+            _enemyWithLowHP.text = "Lowest enemy HP is " + GameManager.Instance.allGridEntitiesCurrentLife.First();
     }
     public void UpdateEnemiesAlive(List<GridEntity> entities)
     {

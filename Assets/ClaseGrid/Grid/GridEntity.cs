@@ -2,19 +2,17 @@ using System;
 using UnityEngine;
 
 //[ExecuteInEditMode]
-
-public enum ROLE { TANK, ADC}
 public enum Faction { ALLY, ENEMY}
 public class GridEntity : Entity
 {
     public event Action<GridEntity> OnMove = delegate { };
     public bool onGrid;
-    public ROLE myRole;
     public Faction myFaction;
     Renderer _rend;
 
     [SerializeField] float _attackCD;
     [SerializeField] float _attackRange;
+    public string myName;
     [SerializeField] float _viewRange;
     [SerializeField] float _timer;
     [SerializeField] GameObject _bulletPrefab;
@@ -26,6 +24,7 @@ public class GridEntity : Entity
     SpatialGrid _grid;
     Action _currentBehaviuor;
     public float CurrentLife { get { return _currentHP; } }
+    public float MaxLife { get { return _maxHP; } }
     private void Awake()
     {
         _rend = GetComponent<Renderer>();
@@ -38,6 +37,7 @@ public class GridEntity : Entity
         _grid.AddEntity(this);
         GameManager.Instance.AddGridEntity(this);
         _rend.material.color = myFaction == Faction.ENEMY ? Color.red : Color.blue;
+        GameManager.Instance.UpdateGridEntityCurrentLife();
 
         if (myFaction == Faction.ENEMY)
             _currentBehaviuor = EnemyBehaviour;
@@ -55,6 +55,12 @@ public class GridEntity : Entity
         //Optimization: Hacer esto solo cuando realmente se mueve y no en el update
 
         _currentBehaviuor();
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        GameManager.Instance.UpdateGridEntityCurrentLife();
     }
     void EnemyBehaviour()
     {

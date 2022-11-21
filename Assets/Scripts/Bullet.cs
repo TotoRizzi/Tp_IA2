@@ -36,14 +36,12 @@ public class Bullet : MonoBehaviour
                     var position2d = x - transform.position;
                     position2d.y = 0;
                     return position2d.sqrMagnitude < _radius * _radius;
-                }).Where(x => x.myRole == ROLE.TANK && x.myFaction == Faction.ENEMY).OrderBy(x => x.CurrentLife).Take(3);
+                }).Where(x => x.myFaction == Faction.ENEMY).OrderBy(x => x.CurrentLife).Take(3);
 
         if (col.Any())
         {
             foreach (var item in col)
-            {
                 item.TakeDamage(_damage);
-            }
         }
 
         Destroy(gameObject);
