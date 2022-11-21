@@ -28,7 +28,9 @@ public class Bullet : MonoBehaviour
     }
     void Explode()
     {
-        var col = _grid.Query(
+        //IA2-P2 GRID
+
+        var col = _grid.Query(             
                 transform.position + new Vector3(-_radius, 0, -_radius),
                 transform.position + new Vector3(_radius, 0, _radius),
                 x =>
@@ -36,7 +38,7 @@ public class Bullet : MonoBehaviour
                     var position2d = x - transform.position;
                     position2d.y = 0;
                     return position2d.sqrMagnitude < _radius * _radius;
-                }).Where(x => x.myFaction == Faction.ENEMY).OrderBy(x => x.CurrentLife).Take(3);
+                }).Where(x => x.myFaction == Faction.ENEMY).OrderBy(x => x.CurrentLife).Take(3); //IA2-P1 WHERE-ORDERBY-TAKE
 
         if (col.Any())
         {

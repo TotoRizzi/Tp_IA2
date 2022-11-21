@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     }
     float UpdateUI(List<GridEntity> entities)
     {
-        var count = entities.Aggregate(0f, (x, y) =>
+        var count = entities.Aggregate(0f, (x, y) =>   //IA2-P1 AGGREGATE
         {
             if (y.myFaction == Faction.ENEMY)
                 return x + 1;

@@ -10,6 +10,8 @@ public class Player : Entity
     [SerializeField] Transform _shootingPoint;
     protected override void Start()
     {
+        //IA2-P3 EVENTFSM
+
         base.Start();
         _myRb = GetComponent<Rigidbody>();
 

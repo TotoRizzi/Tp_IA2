@@ -39,12 +39,12 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateGridEntityCurrentLife()
     {
-        allGridEntitiesCurrentLife = allGridEntities.Where(x => x.myFaction == Faction.ENEMY).OrderBy(x => x.CurrentLife).Select(x => x.myName).ToList();
+        allGridEntitiesCurrentLife = allGridEntities.Where(x => x.myFaction == Faction.ENEMY).OrderBy(x => x.CurrentLife).Select(x => x.myName).ToList();  //IA2-P1 SELECT
         UIManager.Instance.UpdateLowHP();
     }
     IEnumerable<Tuple<GridEntity, string>> SetNames()
     {
-        return allGridEntities.Zip(allNames, (x, y) =>
+        return allGridEntities.Zip(allNames, (x, y) =>  //IA2-P1 ZIP
         {
             x.myName = y;
             return Tuple.Create(x, x.myName);
